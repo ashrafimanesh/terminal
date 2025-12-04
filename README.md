@@ -36,6 +36,37 @@ ssh -D localhost:1010 -S /tmp/.ssh1010 -M -fN localhost1010
 ssh -S /tmp/.ssh1010 -O exit localhost1010
 
 ```
+
+### Change SSH Port
+
+1- edit config file:
+``` /etc/ssh/sshd_config ```
+
+2- Change Port 22 to other port (Exp: 2022)
+
+3- Disable old port usage:
+
+```
+sudo systemctl stop ssh.socket
+sudo systemctl disable ssh.socket
+```
+
+4- Check any error on config ``` sshd -t ```
+
+5- Restart service
+
+```
+sudo systemctl restart ssh
+```
+
+6- Check Port
+
+After running the command below, the new port will be shown.
+
+```
+sudo ss -tulpn | grep sshd
+```
+
 ### Proxychains
 1- Check ip
  ````
